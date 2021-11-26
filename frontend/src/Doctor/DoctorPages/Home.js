@@ -3,7 +3,7 @@ import { AuthContext } from '../context/AuthContext'
 import { useHttp } from '../hooks/http.hook'
 import './home.css'
 import { toast } from 'react-toastify'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const mongoose = require('mongoose')
 
 toast.configure()
@@ -68,7 +68,7 @@ export const Home = () => {
         }
     }, [request, auth])
 
-    
+
 
     useEffect(() => {
         if (error) {
@@ -97,7 +97,7 @@ export const Home = () => {
                         <h3 className="p-3">{new Date().toLocaleDateString()}</h3>
                     </div>
                     <div className="col-md-3" style={{ textAlign: "center" }}>
-                        <h3 className="p-3">{auth.doctor? auth.doctor.section:""}: {auth.doctor && auth.doctor.lastname} {auth.doctor && auth.doctor.firstname[0]}</h3>
+                        <h3 className="p-3">{auth.doctor ? auth.doctor.section : ""}: {auth.doctor && auth.doctor.lastname} {auth.doctor && auth.doctor.firstname[0]}</h3>
                     </div>
                     <div className="col-md-4" style={{ textAlign: "right" }}>
                         <h3 className="p-3">{time}</h3>
@@ -130,7 +130,7 @@ export const Home = () => {
 
 
                 </article>
-                <article className="linkk blue mt-5" style={{ maxWidth: "700px", margin: "auto" }}>
+                <article className={`linkk blue mt-5 ${clientOnline.length === 0? "d-none": "d-block"}`} style={{ maxWidth: "700px", margin: "auto" }}>
                     <div className="row w-100" >
                         <div className="col-12">
                             <h4>

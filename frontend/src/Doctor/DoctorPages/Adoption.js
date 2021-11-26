@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 import { AuthContext } from '../context/AuthContext'
 import { useHttp } from '../hooks/http.hook'
 
-export const Adoption = () => { 
+export const Adoption = () => {
     const { request } = useHttp()
     const sectionId = useParams().id
     const auth = useContext(AuthContext)
@@ -48,10 +48,9 @@ export const Adoption = () => {
     const dontCome = useCallback(async () => {
         try {
             section.checkup = "kelmagan"
-            const fetch = await request(`/api/section/${sectionId}`, 'PATCH', {...section}, {
+            const fetch = await request(`/api/section/${sectionId}`, 'PATCH', { ...section }, {
                 Authorization: `Bearer ${auth.token}`
             })
-            console.log(fetch);
         } catch (e) {
 
         }
