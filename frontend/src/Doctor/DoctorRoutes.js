@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { Adoption } from './DoctorPages/Adoption'
 import { AuthPage } from './DoctorPages/DoctorAuth'
 import { Home } from './DoctorPages/Home'
+import { Sayt } from '../Sayt/sayt'
 
 export const DoctorRoutes = (isAuthenticated) => {
     if (isAuthenticated) {
@@ -14,6 +15,9 @@ export const DoctorRoutes = (isAuthenticated) => {
                     </Route>
                     <Route path="/doctor/adoption/:id" >
                         <Adoption />
+                    </Route>
+                    <Route path="/sayt" >
+                        <Sayt />
                     </Route>
                 </Switch>
             </div>

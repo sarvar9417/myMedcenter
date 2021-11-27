@@ -13,7 +13,15 @@ export const EditClient = () => {
     const auth = useContext(AuthContext)
     const clientId = useParams().id
     const { loading, request, error, clearError } = useHttp()
-    const [form, setForm] = useState('')
+    const [form, setForm] = useState({
+        firstname: "",
+        lastname: "",
+        fathername: "",
+        gender: "",
+        phone: "",
+        id: 0,
+        born: "",
+    })
 
     const getClient = useCallback(async () => {
         try {
@@ -90,93 +98,106 @@ export const EditClient = () => {
                             <h4 className="text-right">Mijozning ma'lumotlarini kiritish</h4>
                         </div>
                         <div className="row mt-2">
-                            <div className="col-md-6">
-                                <label className="labels">Familiyasi</label>
+                            <div className="col-md-6 input_box">
                                 <input
                                     defaultValue={form.lastname}
                                     onChange={changeHandlar}
                                     name='lastname'
                                     type="text"
-                                    className="form-control"
-                                    placeholder="Familiyasini kiriting"
+                                    className="form-control inp"
+                                    placeholder=""
                                 />
+                                <label className="labels">Familiya</label>
                             </div>
-                            <div className="col-md-6">
-                                <label className="labels">Ismi</label>
+                            <div className="col-md-6 input_box">
                                 <input
                                     defaultValue={form.firstname}
                                     onChange={changeHandlar}
                                     name="firstname"
                                     type="text"
-                                    className="form-control"
-                                    placeholder="Ismini kiriting" />
+                                    className="form-control inp"
+                                    placeholder="" />
+                                <label className="labels">Ism</label>    
                             </div>
                         </div>
-                        <div className="row mt-2">
-                            <div className="col-md-6">
-                                <label className="labels">Otasining ismi</label>
+                        <div className="row mt-3">
+                            <div className="col-md-6 input_box">
                                 <input
                                     defaultValue={form.fathername}
                                     onChange={changeHandlar}
                                     name="fathername"
                                     type="text"
-                                    className="form-control"
-                                    placeholder="Otasining ismini kiriting"
+                                    className="form-control inp"
+                                    placeholder=""
                                 />
+                                <label className="labels">Otasining ismi</label>
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label className="text-muted mandatory d-block">Jinsi</label>
+                                    {/* <label className="text-muted mandatory d-block">Jinsi</label> */}
                                     <div className="btn-group" data-toggle="buttons">
-                                        <label htmlFor="gender" className="btn btn-primary form-check-label">
+                                        <div className="wrapper">
                                             <input
-                                                onChange={changeHandlar}
-                                                name="gender"
-                                                className="form-check-input"
-                                                type="radio"
-                                                defaultValue="man"
+                                            className="input"
+                                            id="erkak"
+                                            onChange={changeHandlar}
+                                            name="gender"
+                                            type="radio"
+                                            defaultValue="man"
                                             />
+                                            <label
+                                            className={form.gender === "man" ? "label clabel" : "label"}                                            
+                                            for="erkak"
+                                            >
                                             Erkak
-                                        </label>
-                                        <label htmlFor="gender" className="btn btn-primary form-check-label">
+                                            </label>
                                             <input
-                                                onChange={changeHandlar}
-                                                defaultValue="woman"
-                                                name="gender"
-                                                className="form-check-input"
-                                                type="radio"
+                                            className="input"
+                                            type="radio"
+                                            id="ayol"
+                                            onChange={changeHandlar}
+                                            name="gender"
+                                            defaultValue="woman"
                                             />
+                                            <label
+                                            className={form.gender === "woman" ? "label clabel" : "label"}
+                                            for="ayol"
+                                            >
                                             Ayol
-                                        </label>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="row mt-3">
-                            <div className="col-md-6">
-                                <label className="labels">
-                                    Telefon raqami
-                                </label>
+                            <div className="col-md-6 input_box">
+                                
                                 <input
                                     defaultValue={form.phone}
                                     name="phone"
                                     onChange={changeHandlar}
                                     type="number"
-                                    className="form-control"
-                                    placeholder="Telefon raqamini kiriting"
+                                    className="form-control inp"
+                                    placeholder=""
                                 />
-                            </div>
-                            <div className="col-md-6">
                                 <label className="labels">
+                                    Telefon raqami
                                 </label>
+                            </div>
+                            <div className="col-md-6 input_box">
+                                
                                 <input
                                     onChange={changeDate}
                                     value={new Date(form.born).getFullYear().toString() + '-' + (new Date(form.born).getMonth() < 9 ? "0" + (new Date(form.born).getMonth() + 1).toString() : (new Date(form.born).getMonth() + 1).toString()) + '-' + (new Date(form.born).getDate() < 10 ? "0" + (new Date(form.born).getDate()).toString() : (new Date(form.born).getDate()).toString())}
                                     type="date"
                                     name='born'
-                                    className="form-control"
-                                    placeholder="Telefon raqamini kiriting"
+                                    className="form-control inp"
+                                    placeholder=""
                                 />
+                                <label className="labels">
+                                    Tug'ilgan kuni  
+                                </label>
                             </div>
 
                         </div>

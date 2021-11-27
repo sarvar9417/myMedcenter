@@ -266,6 +266,7 @@ export const NewOnlineClient = () => {
                     <label className="labels">qayta tanlaganda narx va vaqt o'chib ketadi
                     </label>
                     <Select
+                        className="mt-3"
                         onChange={(event) => changeSections(event)}
                         closeMenuOnSelect={false}
                         components={animatedComponents}

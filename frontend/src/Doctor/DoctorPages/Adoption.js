@@ -81,7 +81,10 @@ export const Adoption = () => {
                 Authorization: `Bearer ${auth.token}`
             })
             console.log(fetch)
+<<<<<<< Updated upstream
             history.push(`/doctor`)
+=======
+>>>>>>> Stashed changes
         } catch (e) {
 
         }

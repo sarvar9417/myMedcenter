@@ -263,6 +263,7 @@ export const OldClient = () => {
         <div className="col-md-12" data-aos="zoom-out">
           <label className="labels">qayta tanlaganda narx o'chib ketadi</label>
           <Select
+            className="mt-3"
             onChange={(event) => changeSections(event)}
             closeMenuOnSelect={false}
             components={animatedComponents}

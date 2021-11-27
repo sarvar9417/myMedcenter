@@ -24,7 +24,7 @@ export const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light shadow fixed-top bg-light" data-aos="fade-down" data-aos-duration="1000" >
             <div className="container" >
-                <Link className="navbar-brand" to="/">Logo</Link>
+                <Link className="navbar-brand" to="/sayt">Logo</Link>
                 <button onClick={() => setShow(!show)} className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
                     <FontAwesomeIcon icon={faBars} className="navbar-icon" />
                 </button>

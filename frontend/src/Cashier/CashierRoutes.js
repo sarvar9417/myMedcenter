@@ -3,6 +3,8 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { AuthPage } from './cashierPages/CashierAuth'
 import { CreateCheck } from './cashierPages/CreateCheck'
 import { Home } from './cashierPages/Home'
+import { Sayt } from '../Sayt/sayt'
+
 
 export const CashierRoutes = (isAuthenticated) => {
     if (isAuthenticated) {
@@ -15,7 +17,9 @@ export const CashierRoutes = (isAuthenticated) => {
                     <Route path="/cashier/pay/:id" >
                         <CreateCheck />
                     </Route>
-                    
+                    <Route path="/sayt" >
+                        <Sayt />
+                    </Route>
                 </Switch>
             </div>
         )

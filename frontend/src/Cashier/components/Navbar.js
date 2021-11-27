@@ -24,16 +24,16 @@ export const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light shadow fixed-top bg-light" data-aos="fade-down" data-aos-duration="1000" >
             <div className="container" >
-                <Link className="navbar-brand" to="/">Logo</Link>
+                <Link className="navbar-brand" to="/sayt">Logo</Link>
                 <button onClick={() => setShow(!show)} className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
                     <FontAwesomeIcon icon={faBars} className="navbar-icon" />
                 </button>
                 <div className={show ? "collapse navbar-collapse" : "collapse navbar-collapse show"} id="navbarNav">
                     <ul className="navbar-nav ms-auto ull">
                         <li className="nav-item">
-                            <Link className="nav-link a aktive" to="/reseption/home">Bosh sahifa</Link>
+                            <Link className="nav-link a aktive" to="/cashier">Bosh sahifa</Link>
                         </li>
-                        <li className="nav-item" >
+                        {/* <li className="nav-item" >
                             <Link className="nav-link a" to="/reseption/onlineqabul">Online qabul</Link>
                         </li>
                         <li className="nav-item" >
@@ -41,7 +41,7 @@ export const Navbar = () => {
                         </li>
                         <li className="nav-item" >
                             <Link className="nav-link a" to="/reseption/clients">Mijozlar</Link>
-                        </li>
+                        </li> */}
                         {/* <li className="nav-item">
                             <Link className="nav-link" to="/reseption/cost">Xarajat</Link>
                         </li>

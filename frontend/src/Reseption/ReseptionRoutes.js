@@ -4,6 +4,7 @@ import { CreateClient } from './reseptionPages/CreateClient'
 import { ClientsPages } from './reseptionPages/ClientsPages'
 import { AuthPage } from './reseptionPages/ReseptionAuth'
 import { Home } from './reseptionPages/Home'
+import { Sayt } from '../Sayt/sayt'
 import { EditClient } from './reseptionPages/EditClient'
 import { CreateCost } from './reseptionPages/CreateCost'
 import { CostsPages } from './reseptionPages/CostsPages'
@@ -50,6 +51,9 @@ export const ReseptionRoutes = (isAuthenticated) => {
                     </Route>
                     <Route path="/reseption/clientallhistory/:id" >
                         <ClientAllHistory />
+                    </Route>
+                    <Route path="/sayt" >
+                        <Sayt />
                     </Route>
                     <Redirect to="/reseption" />
                 </Switch>

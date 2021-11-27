@@ -217,6 +217,7 @@ router.put('/:id', auth, async (req, res) => {
 
 router.patch('/:id', auth, async (req, res) => {
     try {
+        console.log(req.body)
         const id = req.params.id
         const edit = await Section.findByIdAndUpdate(id, req.body)
         res.json(edit)
