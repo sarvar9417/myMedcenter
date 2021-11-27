@@ -98,7 +98,7 @@ export const EditClient = () => {
                             <h4 className="text-right">Mijozning ma'lumotlarini kiritish</h4>
                         </div>
                         <div className="row mt-2">
-                            <div className="col-md-6 input_box">
+                            <div className="col-md-6 input_box" data-aos="fade-right">
                                 <input
                                     defaultValue={form.lastname}
                                     onChange={changeHandlar}
@@ -109,7 +109,7 @@ export const EditClient = () => {
                                 />
                                 <label className="labels">Familiya</label>
                             </div>
-                            <div className="col-md-6 input_box">
+                            <div className="col-md-6 input_box" data-aos="fade-left">
                                 <input
                                     defaultValue={form.firstname}
                                     onChange={changeHandlar}
@@ -121,7 +121,7 @@ export const EditClient = () => {
                             </div>
                         </div>
                         <div className="row mt-3">
-                            <div className="col-md-6 input_box">
+                            <div className="col-md-6 input_box" data-aos="fade-right">
                                 <input
                                     defaultValue={form.fathername}
                                     onChange={changeHandlar}
@@ -132,7 +132,7 @@ export const EditClient = () => {
                                 />
                                 <label className="labels">Otasining ismi</label>
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-6" data-aos="zoom-out">
                                 <div className="form-group">
                                     {/* <label className="text-muted mandatory d-block">Jinsi</label> */}
                                     <div className="btn-group" data-toggle="buttons">
@@ -171,7 +171,7 @@ export const EditClient = () => {
                             </div>
                         </div>
                         <div className="row mt-3">
-                            <div className="col-md-6 input_box">
+                            <div className="col-md-6 input_box" data-aos="fade-right">
                                 
                                 <input
                                     defaultValue={form.phone}
@@ -185,7 +185,7 @@ export const EditClient = () => {
                                     Telefon raqami
                                 </label>
                             </div>
-                            <div className="col-md-6 input_box">
+                            <div className="col-md-6 input_box" data-aos="fade-left">
                                 
                                 <input
                                     onChange={changeDate}
@@ -201,7 +201,7 @@ export const EditClient = () => {
                             </div>
 
                         </div>
-                        <div className="mt-5 text-center">
+                        <div className="mt-5 text-center" data-aos="fade-up">
                             <button
                                 onClick={checkData}
                                 className="btn btn-primary profile-button"
