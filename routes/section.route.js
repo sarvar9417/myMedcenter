@@ -82,7 +82,7 @@ router.get('/reseption/:id', auth, async (req, res) => {
     }
 })
 
-// /api/section/reseption/clientId
+// /api/section/reseption/clientId //
 router.get('/reseptionid/:id', auth, async (req, res) => {
     try {
         const id = req.params.id
