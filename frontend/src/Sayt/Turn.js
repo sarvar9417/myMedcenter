@@ -107,12 +107,12 @@ export const Turn = () => {
             <div className="row mt-3" style={{ overflowX: "hidden" }}>
                 <div className="col-lg-3 col-md-4 col-sm-6">
                     <div className="kard" style={{ width: "90%", margin: "auto" }}>
-                        <div className="info" style={{ backgroundColor: "rgb(252, 174, 73)" }}>
+                        <div className="info" style={{ backgroundColor: "hsl(212, 86%, 64%)" }}>
                             <h2 className="text">Lor</h2>
                             <p></p>
                         </div>
                         <div className="row">
-                            <div className="col-8" style={{ textAlign: "center", borderRight: "3px solid rgb(252, 174, 73)" }}>
+                            <div className="col-8" style={{ textAlign: "center", borderRight: "3px solid hsl(212, 86%, 64%)" }}>
                                 <h5>Navbat</h5>
                                 <h1 style={{ color: "green" }}>46</h1>
                             </div>
@@ -189,12 +189,12 @@ export const Turn = () => {
             <div className="row mt-3" style={{ overflowX: "hidden" }}>
                 <div className="col-lg-3 col-md-4 col-sm-6">
                     <div className="kard" style={{ width: "90%", margin: "auto" }}>
-                        <div className="info" style={{ backgroundColor: "rgb(252, 174, 73)" }}>
+                        <div className="info" style={{ backgroundColor: "hsl(212, 86%, 64%)" }}>
                             <h2 className="text">Lor</h2>
                             <p></p>
                         </div>
                         <div className="row">
-                            <div className="col-8" style={{ textAlign: "center", borderRight: "3px solid rgb(252, 174, 73)" }}>
+                            <div className="col-8" style={{ textAlign: "center", borderRight: "3px solid hsl(212, 86%, 64%)" }}>
                                 <h5>Navbat</h5>
                                 <h1 style={{ color: "green" }}>46</h1>
                             </div>
@@ -209,12 +209,12 @@ export const Turn = () => {
                 </div>
                 <div className="col-lg-3 col-md-4 col-sm-6">
                     <div className="kard" style={{ width: "90%", margin: "auto" }}>
-                        <div className="info" style={{ backgroundColor: "rgb(69, 211, 211)" }}>
+                        <div className="info" style={{ backgroundColor: "hsl(212, 86%, 64%)" }}>
                             <h2 className="text">Lor</h2>
                             <p></p>
                         </div>
                         <div className="row">
-                            <div className="col-8" style={{ textAlign: "center", borderRight: "3px solid rgb(69, 211, 211)" }}>
+                            <div className="col-8" style={{ textAlign: "center", borderRight: "3px solid hsl(212, 86%, 64%)" }}>
                                 <h5>Navbat</h5>
                                 <h1 style={{ color: "green" }}>46</h1>
                             </div>
