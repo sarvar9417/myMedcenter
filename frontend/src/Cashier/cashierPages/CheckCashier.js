@@ -50,11 +50,13 @@ export const CheckCashier = () => {
             const fetch = await request(`/api/clients/cashier/${clientId}`, 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
+            // setAllSections(fetch)
             setClient(fetch)
         } catch (e) {
 
         }
     }, [request, clientId])
+
 
     const getAllSections = useCallback(async () => {
         try {
@@ -131,7 +133,6 @@ export const CheckCashier = () => {
             const fetch = await request(`/api/section/cashier/${section._id}`, 'PATCH', { ...section }, {
                 Authorization: `Bearer ${auth.token}`
             })
-            console.log(fetch);
         } catch (e) {
 
         }
@@ -146,7 +147,9 @@ export const CheckCashier = () => {
 
     const getchangeSections = useCallback(async () => {
         try {
-            const fetch = await request(`/api/clients/cashier/${clientid}`, 'GET', null)
+            const fetch = await request(`/api/clients/cashierid/${clientid}`, 'GET', null, {
+                Authorization: `Bearer ${auth.token}`
+            })
             setClientId(fetch[0]._id)
         } catch (e) {
 
@@ -161,7 +164,6 @@ export const CheckCashier = () => {
         getAllSections()
         getClient()
     }, [getAllSections, getClient])
-
     return (
         <>
             <div style={{ margin: "30px auto", maxWidth: "1000px", padding: "20px 10px", border: "1px solid #999", borderRadius: "5px" }}>

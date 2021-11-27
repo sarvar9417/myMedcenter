@@ -45,9 +45,11 @@ export const Adoption = () => {
 
     const getSection = useCallback(async () => {
         try {
-            const fetch = await request(`/api/section/get/${sectionId}`, 'GET', null, {
+            console.log(sectionId);
+            const fetch = await request(`/api/section/doctor/${sectionId}`, 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
+            console.log(fetch);
             getClient(fetch.client)
             setSection(fetch)
         } catch (error) {
@@ -57,7 +59,7 @@ export const Adoption = () => {
 
     const getClient = useCallback(async (id) => {
         try {
-            const fetch = await request(`/api/clients/${id}`, 'GET', null, {
+            const fetch = await request(`/api/clients/doctor/${id}`, 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             setClient(fetch)
@@ -69,7 +71,6 @@ export const Adoption = () => {
     const changeHandlar = (event) => {
         setSection({ ...section, [event.target.name]: event.target.value })
     }
-
     const checkUp = (event) => {
         setSection({ ...section, [event.target.name]: event.target.id })
         openModal()
@@ -77,15 +78,34 @@ export const Adoption = () => {
 
     const dontCome = useCallback(async () => {
         try {
-            const fetch = await request(`/api/section/${sectionId}`, 'PATCH', { ...section }, {
+            const fetch = await request(`/api/section/doctordontcome/${sectionId}`, 'PUT', { checkUp: "kelmagan" }, {
                 Authorization: `Bearer ${auth.token}`
             })
-            console.log(fetch)
             history.push(`/doctor`)
         } catch (e) {
 
         }
     }, [request, auth])
+
+
+    const doneCome = useCallback(async () => {
+        try {
+            const fetch = await request(`/api/section/doctordone/${sectionId}`, 'PUT',
+                {
+                    checkUp: "kelgan",
+                    comment: section.comment,
+                    summary: section.summary,
+                    done: "tasdiqlangan"
+                },
+                {
+                    Authorization: `Bearer ${auth.token}`
+                })
+            console.log(fetch)
+            history.push(`/doctor`)
+        } catch (e) {
+
+        }
+    }, [request, auth, section, sectionId])
 
     useEffect(() => {
         getSection()
@@ -180,14 +200,17 @@ export const Adoption = () => {
 
                     <div className="row mt-5 mb-5">
                         <div className="col-4">
-                            <button id="kelmagan" name="checkup" onClick={ checkUp } className="btn btn-danger">Mijoz kelmadi</button>
+                            <button id="kelmagan" name="checkup" onClick={checkUp} className="btn btn-danger">Mijoz kelmadi</button>
                         </div>
                         <div className="col-4">
-                            <button className="btn" style={{ color: "#fff", backgroundColor: "#14A479" }}>Tasdiqlash</button>
+                            <button className="btn" onClick={doneCome} style={{ color: "#fff", backgroundColor: "#14A479" }}>Tasdiqlash</button>
                         </div>
                     </div>
                 </div>
             </div >
+
+
+
 
 
             {/* Modal oynaning ochilishi */}
@@ -200,7 +223,7 @@ export const Adoption = () => {
                 >
                     <div className="row m-1">
                         <div className="col-12 text-center">
-                            <button  onClick={dontCome} className="btn btn-success" style={{ marginRight: "30px" }}>Tasdiqlash</button>
+                            <button onClick={dontCome} className="btn btn-success" style={{ marginRight: "30px" }}>Tasdiqlash</button>
                             <button onClick={closeModal} className="btn btn-danger" >Qaytish</button>
                         </div>
                     </div>

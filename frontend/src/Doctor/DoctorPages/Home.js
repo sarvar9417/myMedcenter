@@ -24,7 +24,7 @@ export const Home = () => {
 
     const getOnline = useCallback(async () => {
         try {
-            const fetch = await request(`/api/section/on/${auth.doctor.section}`, 'GET', null, {
+            const fetch = await request(`/api/section/doctoronline/${auth.doctor.section}`, 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             getClientOnline(fetch.client)
@@ -36,7 +36,7 @@ export const Home = () => {
 
     const getClientOnline = useCallback(async (id) => {
         try {
-            const fetch = await request(`/api/clients/${id}`, 'GET', null, {
+            const fetch = await request(`/api/clients/doctor/${id}`, 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             setClientOnline(fetch)
@@ -47,7 +47,7 @@ export const Home = () => {
 
     const getOffline = useCallback(async () => {
         try {
-            const fetch = await request(`/api/section/off/${auth.doctor.section}`, 'GET', null, {
+            const fetch = await request(`/api/section/doctoroffline/${auth.doctor.section}`, 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             getClientOffline(fetch.client)
@@ -59,7 +59,7 @@ export const Home = () => {
 
     const getClientOffline = useCallback(async (id) => {
         try {
-            const fetch = await request(`/api/clients/${id}`, 'GET', null, {
+            const fetch = await request(`/api/clients/doctor/${id}`, 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             setClientOffline(fetch)
