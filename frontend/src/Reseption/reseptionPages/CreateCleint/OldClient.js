@@ -86,7 +86,7 @@ export const OldClient = () => {
 
   const allClients = useCallback(async () => {
     try {
-      const fetch = await request("/api/clients/", "GET", null, {
+      const fetch = await request("/api/clients/reseption", "GET", null, {
         Authorization: `Bearer ${auth.token}`
       });
       setClients(fetch);
@@ -95,7 +95,7 @@ export const OldClient = () => {
 
   const allTurns = useCallback(async () => {
     try {
-      const sec = await request("/api/section/", "GET", null, {
+      const sec = await request("/api/section/reseption", "GET", null, {
         Authorization: `Bearer ${auth.token}`
       });
       seTurns(sec);
@@ -119,7 +119,7 @@ export const OldClient = () => {
 
   const create = async (section) => {
     try {
-      const data = await request(`/api/section/register/${client._id}`, "POST", { ...section }, {
+      const data = await request(`/api/section/reseption/register/${client._id}`, "POST", { ...section }, {
         Authorization: `Bearer ${auth.token}`
       });
       console.log(data);

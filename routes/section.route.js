@@ -3,9 +3,13 @@ const router = Router()
 const { Section, validateSection } = require('../models/Section')
 const auth = require('../middleware/auth.middleware')
 
-// /api/section/register
-router.post('/register/:id', auth, async (req, res) => {
+// ===================================================================================
+// ===================================================================================
+// RESEPTION routes
+// /api/section/reseption/register
+router.post('/reseption/register/:id', auth, async (req, res) => {
     try {
+        console.log(req.body);
         const id = req.params.id
         const { error } = validateSection(req.body)
         if (error) {
@@ -55,7 +59,98 @@ router.post('/register/:id', auth, async (req, res) => {
     }
 })
 
-// DOCTOR SECTION
+
+// /api/section/reseption
+router.get('/reseption', auth, async (req, res) => {
+    try {
+        const section = await Section.find().sort({ _id: -1 })
+        res.json(section)
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+
+// /api/section/reseption
+router.get('/reseption/:id', auth, async (req, res) => {
+    try {
+        const id = req.params.id
+        const sections = await Section.findById(id)
+        res.json(sections)
+
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+
+// /api/section/reseption/clientId
+router.get('/reseptionid/:id', auth, async (req, res) => {
+    try {
+        const id = req.params.id
+        const sections = await Section.find({ client: id })
+        res.json(sections)
+
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+
+router.put('/reseption/:id', auth, async (req, res) => {
+    try {
+        const id = req.params.id
+        const edit = await Section.findById(id)
+        edit.position = req.body.position
+        await edit.save()
+        res.json(edit)
+
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+// END RESEPTION routes
+// ===================================================================================
+// ===================================================================================
+
+
+
+// ===================================================================================
+// ===================================================================================
+// CASHIER routes
+// /api/section/reseption
+router.get('/cashier', auth, async (req, res) => {
+    try {
+        const section = await Section.find().sort({ _id: -1 })
+        res.json(section)
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+
+// /api/section/
+router.get('/cashier/:id', auth, async (req, res) => {
+    try {
+        const id = req.params.id
+        const sections = await Section.find({ client: id }).sort({ _id: -1 })
+        res.json(sections);
+
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+
+// /api/section/cashier/
+router.patch('/cashier/:id', auth, async (req, res) => {
+    try {
+        const id = req.params.id
+        const edit = await Section.findByIdAndUpdate(id, req.body)
+        res.json(edit)
+
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+
+
+
 
 // Get online sections
 router.get('/on/:section', auth, async (req, res) => {
@@ -89,14 +184,6 @@ router.get('/off/:section', auth, async (req, res) => {
 
 // END DOCTOR SECTION
 
-router.get('/', auth, async (req, res) => {
-    try {
-        const section = await Section.find().sort({ _id: -1 })
-        res.json(section)
-    } catch (e) {
-        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
-    }
-})
 
 
 // /api/section/
@@ -124,17 +211,6 @@ router.put('/:id', auth, async (req, res) => {
     }
 })
 
-// /api/section/
-router.get('/get/:id', auth, async (req, res) => {
-    try {
-        const id = req.params.id
-        const sections = await Section.findById(id)
-        res.json(sections)
-
-    } catch (e) {
-        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
-    }
-})
 
 
 

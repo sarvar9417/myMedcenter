@@ -31,7 +31,6 @@ export const AuthPage = () => {
     const registerHandler = async () => {
         try {
             const data = await request('/api/auth/reseption/register', 'POST', { ...form })
-            console.log('Data: ', data);
         } catch (e) {
 
         }
@@ -40,7 +39,6 @@ export const AuthPage = () => {
     const loginHandler = async () => {
         try {
             const data = await request('/api/auth/reseption/login', 'POST', { ...form })
-            console.log(data);
             auth.login(data.token, data.reseptionId, data.user)
         } catch (e) {
 

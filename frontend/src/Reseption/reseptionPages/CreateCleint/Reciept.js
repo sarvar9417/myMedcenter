@@ -14,7 +14,7 @@ export const Reciept = () => {
     })
     const clientId = useParams().id
     const today = (new Date().getDate().toString() + "." + (new Date().getMonth() + 1).toString() + "." + new Date().getFullYear().toString() + " " + new Date().getHours().toString() + ":" + new Date().getMinutes().toString() + ":" + new Date().getSeconds().toString())
-    const [sections, setSections] = useState([0])
+    const [sections, setSections] = useState([])
     let price = 0
     let k = 0
     let l = 0
@@ -23,7 +23,7 @@ export const Reciept = () => {
 
     const getSections = useCallback(async () => {
         try {
-            const data = await request(`/api/section/${clientId}`, 'GET', null, {
+            const data = await request(`/api/section/reseptionid/${clientId}`, 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             console.log(data);
@@ -34,7 +34,7 @@ export const Reciept = () => {
 
     const getClient = useCallback(async () => {
         try {
-            const data = await request(`/api/clients/${clientId}`, 'GET', null, {
+            const data = await request(`/api/clients/reseption/${clientId}`, 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             setClient(data)
@@ -44,7 +44,7 @@ export const Reciept = () => {
 
     useEffect(() => {
 
-        if (sections[0] === 0) {
+        if (sections.length === 0) {
             getSections()
         }
 

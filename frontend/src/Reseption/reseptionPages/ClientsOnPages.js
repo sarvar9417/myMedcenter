@@ -38,7 +38,7 @@ export const ClientsOnPages = () => {
 
     const getClients = useCallback(async () => {
         try {
-            const fetch = await request('/api/clients', 'GET', null, {
+            const fetch = await request('/api/clients/reseption', 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             setAllClients(fetch)
@@ -49,7 +49,7 @@ export const ClientsOnPages = () => {
 
     const positionUpdate = useCallback(async (id, positionSection) => {
         try {
-            const fetch = await request(`/api/section/${id}`, 'PUT', { position: positionSection }, {
+            const fetch = await request(`/api/section/reseption/${id}`, 'PUT', { position: positionSection }, {
                 Authorization: `Bearer ${auth.token}`
             })
             getAllSections()
@@ -61,7 +61,7 @@ export const ClientsOnPages = () => {
 
     const getAllSections = useCallback(async () => {
         try {
-            const fetch = await request('/api/section', 'GET', null, {
+            const fetch = await request('/api/section/reseption', 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             setAllSections(fetch)
@@ -135,7 +135,6 @@ export const ClientsOnPages = () => {
                 day = new Date(client.born).getDate().toString() < 10 ? "0" + new Date(client.born).getDate().toString() : new Date(client.born).getDate().toString()
                 let date2 = parseInt(year + month + day)
                 if (date1 === date2 && section.client === client._id) {
-                    console.log(date1);
                     c.push(section)
                 }
             })
@@ -239,11 +238,11 @@ export const ClientsOnPages = () => {
                     </thead>
                     <tbody className="" >
                         {sections.map((section, key) => {
-                            return AllClients.map(client => {
+                            return AllClients.map((client, index) => {
                                 if (client._id === section.client && section.bron === "online") {
                                     k++
                                     return (
-                                        <tr key={key} >
+                                        <tr key={key} id={index} >
                                             <td className="no" >{k}</td>
                                             <td className="date" >{new mongoose.Types.ObjectId(client._id).getTimestamp().toLocaleDateString()} {new mongoose.Types.ObjectId(client._id).getTimestamp().toLocaleTimeString()}</td>
                                             <td className="fish" ><Link to={`/reseption/clientallhistory/${client._id}`} > {client.lastname} {client.firstname} {client.fathername} </Link></td>
@@ -253,7 +252,7 @@ export const ClientsOnPages = () => {
                                             <td className="section"> <Link to={`/reseption/clienthistory/${section._id}`} > {section.name} </Link></td>
                                             <td className="edit"> <Link to={`/reseption/edit/${client._id}`} > <FontAwesomeIcon icon={faPenAlt} /> </Link>  </td>
                                             <td className={
-                                                payment.map((pay) => {
+                                                payment.map((pay, key) => {
                                                     if (pay === "to'langan" && section.payment === "to'langan") {
                                                         return " text-success prices text-center"
                                                     }
@@ -266,7 +265,7 @@ export const ClientsOnPages = () => {
                                                 })
                                             } >
                                                 {
-                                                    payment.map((pay) => {
+                                                    payment.map((pay, key) => {
                                                         if (pay === "to'langan" && section.payment === "to'langan") {
                                                             return (<FontAwesomeIcon icon={faCheck} />)
                                                         }

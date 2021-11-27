@@ -91,10 +91,10 @@ export const NewOnlineClient = () => {
 
     const allClients = useCallback(async () => {
         try {
-            const fetch = await request('/api/clients', 'GET', null, {
+            const fetch = await request('/api/clients/reseption', 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
-            const sec = await request('/api/section', 'GET', null, {
+            const sec = await request('/api/section/reseption', 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             seTurns(sec)
@@ -112,7 +112,7 @@ export const NewOnlineClient = () => {
 
     const createHandler = async () => {
         try {
-            const data = await request('/api/clients/register', 'POST', { ...client }, {
+            const data = await request('/api/clients/reseption/register', 'POST', { ...client }, {
                 Authorization: `Bearer ${auth.token}`
             })
             createAllSections(data._id)
@@ -129,7 +129,7 @@ export const NewOnlineClient = () => {
 
     const create = async (id, section) => {
         try {
-            const data = await request(`/api/section/register/${id}`, 'POST', { ...section }, {
+            const data = await request(`/api/section/reseption/register/${id}`, 'POST', { ...section }, {
                 Authorization: `Bearer ${auth.token}`
             })
             console.log(data);

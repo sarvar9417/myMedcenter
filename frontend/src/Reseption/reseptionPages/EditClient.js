@@ -17,7 +17,7 @@ export const EditClient = () => {
 
     const getClient = useCallback(async () => {
         try {
-            const data = await request(`/api/clients/${clientId}`, 'GET', null, {
+            const data = await request(`/api/clients/reseption/${clientId}`, 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             setForm({
@@ -56,7 +56,7 @@ export const EditClient = () => {
 
     const createHandler = async () => {
         try {
-            const data = await request(`/api/clients/${clientId}`, 'PATCH', { ...form }, {
+            const data = await request(`/api/clients/reseption/${clientId}`, 'PATCH', { ...form }, {
                 Authorization: `Bearer ${auth.token}`
             })
             notify(data)

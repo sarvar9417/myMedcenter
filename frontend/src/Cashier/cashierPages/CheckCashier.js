@@ -47,7 +47,7 @@ export const CheckCashier = () => {
 
     const getClient = useCallback(async () => {
         try {
-            const fetch = await request(`/api/clients/${clientId}`, 'GET', null, {
+            const fetch = await request(`/api/clients/cashier/${clientId}`, 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             setClient(fetch)
@@ -58,7 +58,7 @@ export const CheckCashier = () => {
 
     const getAllSections = useCallback(async () => {
         try {
-            const fetch = await request(`/api/section/${clientId}`, 'GET', null, {
+            const fetch = await request(`/api/section/cashier/${clientId}`, 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             let s = []
@@ -128,7 +128,7 @@ export const CheckCashier = () => {
 
     const patchPayments = useCallback(async (section) => {
         try {
-            const fetch = await request(`/api/section/${section._id}`, 'PATCH', { ...section }, {
+            const fetch = await request(`/api/section/cashier/${section._id}`, 'PATCH', { ...section }, {
                 Authorization: `Bearer ${auth.token}`
             })
             console.log(fetch);
@@ -146,7 +146,7 @@ export const CheckCashier = () => {
 
     const getchangeSections = useCallback(async () => {
         try {
-            const fetch = await request(`/api/clients/id/${clientid}`, 'GET', null)
+            const fetch = await request(`/api/clients/cashier/${clientid}`, 'GET', null)
             setClientId(fetch[0]._id)
         } catch (e) {
 

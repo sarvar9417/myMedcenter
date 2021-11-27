@@ -18,7 +18,7 @@ export const ClientHistory = () => {
 
     const getClient = useCallback(async (clientId) => {
         try {
-            const data = await request(`/api/clients/${clientId}`, 'GET', null, {
+            const data = await request(`/api/clients/reseption/${clientId}`, 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             setClient(data)
@@ -28,7 +28,7 @@ export const ClientHistory = () => {
 
     const getSection = useCallback(async () => {
         try {
-            const fetch = await request(`/api/section/get/${sectionId}`, 'GET', null, {
+            const fetch = await request(`/api/section/reseption/${sectionId}`, 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             getClient(fetch.client)

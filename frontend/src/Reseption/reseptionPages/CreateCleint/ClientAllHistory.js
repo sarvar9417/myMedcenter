@@ -21,10 +21,11 @@ export const ClientAllHistory = () => {
 
     const getClient = useCallback(async () => {
         try {
-            const data = await request(`/api/clients/${clientId}`, 'GET', null, 
-            {
-                Authorization: `Bearer ${auth.token}`
-            })
+            const data = await request(`/api/clients/reseption/${clientId}`, 'GET', null,
+                {
+                    Authorization: `Bearer ${auth.token}`
+                })
+            getSections()
             setClient(data)
         } catch (e) {
         }
@@ -32,10 +33,11 @@ export const ClientAllHistory = () => {
 
     const getSections = useCallback(async () => {
         try {
-            const fetch = await request(`/api/section/${clientId}`, 'GET', null,
+            const fetch = await request(`/api/section/reseptionid/${clientId}`, 'GET', null,
                 {
                     Authorization: `Bearer ${auth.token}`
                 })
+                console.log(fetch);
             setSections(fetch)
         } catch (e) {
 
@@ -79,7 +81,7 @@ export const ClientAllHistory = () => {
                         <hr style={{ border: "2px solid black" }} />
                     </div>
                     {
-                        sections.map((section, key) => {
+                        sections && sections.map((section, key) => {
                             return (
                                 <div className="row">
                                     <div className="col-3" style={{ borderRight: "3px solid black" }}>
@@ -126,7 +128,7 @@ export const ClientAllHistory = () => {
                                             </li>
                                         </ul>
                                     </div>
-                                    <hr className="mt-2"/>
+                                    <hr className="mt-2" />
                                 </div>
                             )
                         })

@@ -39,7 +39,7 @@ export const ClientsPages = () => {
 
     const getClients = useCallback(async () => {
         try {
-            const fetch = await request('/api/clients', 'GET', null, {
+            const fetch = await request('/api/clients/reseption', 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             setAllClients(fetch)
@@ -50,7 +50,7 @@ export const ClientsPages = () => {
 
     const getAllSections = useCallback(async () => {
         try {
-            const fetch = await request('/api/section', 'GET', null, {
+            const fetch = await request('/api/section/reseption', 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
             setAllSections(fetch)

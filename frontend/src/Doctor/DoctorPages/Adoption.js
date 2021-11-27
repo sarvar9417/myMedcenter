@@ -1,13 +1,26 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import { AuthContext } from '../context/AuthContext'
 import { useHttp } from '../hooks/http.hook'
+import Modal from 'react-modal';
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
+
 
 export const Adoption = () => {
-    const { request } = useHttp()
+    const { request, loading } = useHttp()
     const sectionId = useParams().id
     const auth = useContext(AuthContext)
     const [section, setSection] = useState()
+    const history = useHistory()
     const [client, setClient] = useState({
         id: "",
         lastname: "",
@@ -17,6 +30,18 @@ export const Adoption = () => {
         phone: "",
         price: ""
     })
+
+    //Modal oyna
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
 
     const getSection = useCallback(async () => {
         try {
@@ -42,15 +67,21 @@ export const Adoption = () => {
     }, [request, auth])
 
     const changeHandlar = (event) => {
-        setSection({ ...section, [event.target.name]: event.target.value });
+        setSection({ ...section, [event.target.name]: event.target.value })
+    }
+
+    const checkUp = (event) => {
+        setSection({ ...section, [event.target.name]: event.target.id })
+        openModal()
     }
 
     const dontCome = useCallback(async () => {
         try {
-            section.checkup = "kelmagan"
             const fetch = await request(`/api/section/${sectionId}`, 'PATCH', { ...section }, {
                 Authorization: `Bearer ${auth.token}`
             })
+            console.log(fetch)
+            history.push(`/doctor`)
         } catch (e) {
 
         }
@@ -149,7 +180,7 @@ export const Adoption = () => {
 
                     <div className="row mt-5 mb-5">
                         <div className="col-4">
-                            <button onClick={dontCome} className="btn btn-danger">Mijoz kelmadi</button>
+                            <button id="kelmagan" name="checkup" onClick={ checkUp } className="btn btn-danger">Mijoz kelmadi</button>
                         </div>
                         <div className="col-4">
                             <button className="btn" style={{ color: "#fff", backgroundColor: "#14A479" }}>Tasdiqlash</button>
@@ -157,6 +188,26 @@ export const Adoption = () => {
                     </div>
                 </div>
             </div >
+
+
+            {/* Modal oynaning ochilishi */}
+            <div>
+                <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <div className="row m-1">
+                        <div className="col-12 text-center">
+                            <button  onClick={dontCome} className="btn btn-success" style={{ marginRight: "30px" }}>Tasdiqlash</button>
+                            <button onClick={closeModal} className="btn btn-danger" >Qaytish</button>
+                        </div>
+                    </div>
+
+                </Modal>
+            </div>
+
         </div >
     )
 }

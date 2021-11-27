@@ -103,10 +103,10 @@ export const NewClient = () => {
 
   const allClients = useCallback(async () => {
     try {
-      const fetch = await request("/api/clients", "GET", null, {
+      const fetch = await request("/api/clients/reseption", "GET", null, {
         Authorization: `Bearer ${auth.token}`
       })
-      const sec = await request("/api/section", "GET", null, {
+      const sec = await request("/api/section/reseption", "GET", null, {
         Authorization: `Bearer ${auth.token}`
       })
       seTurns(sec);
@@ -123,10 +123,11 @@ export const NewClient = () => {
 
   const createHandler = async () => {
     try {
-      const data = await request("/api/clients/register", "POST", { ...client }, {
+      const data = await request("/api/clients/reseption/register", "POST", { ...client }, {
         Authorization: `Bearer ${auth.token}`
       });
-      createAllSections(data._id);
+      
+      createAllSections(data._id)
       history.push(`/reseption/reciept/${data._id}`)
     } catch (e) { }
   };
@@ -140,10 +141,9 @@ export const NewClient = () => {
 
   const create = async (id, section) => {
     try {
-      const data = await request(`/api/section/register/${id}`, "POST", { ...section }, {
+      const data = await request(`/api/section/reseption/register/${id}`, "POST", { ...section }, {
         Authorization: `Bearer ${auth.token}`
       });
-      console.log(data);
     } catch (e) { }
   };
 
@@ -239,7 +239,7 @@ export const NewClient = () => {
                 />
                 <label
                   className={client.gender === "man" ? "label clabel" : "label"}
-                  for="erkak"
+                  htmlFor="erkak"
                 >
                   Erkak
                 </label>
@@ -255,7 +255,7 @@ export const NewClient = () => {
                   className={
                     client.gender === "woman" ? "label clabel" : "label"
                   }
-                  for="ayol"
+                  htmlFor="ayol"
                 >
                   Ayol
                 </label>

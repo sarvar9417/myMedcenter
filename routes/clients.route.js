@@ -3,8 +3,11 @@ const router = Router()
 const { Clients, validateClients } = require('../models/Clients')
 const auth = require('../middleware/auth.middleware')
 
+// ===================================================================================
+// ===================================================================================
+// RESEPTION routes
 // /api/auth/clients/register
-router.post('/register', auth, async (req, res) => {
+router.post('/reseption/register', auth, async (req, res) => {
     try {
         const { error } = validateClients(req.body)
         if (error) {
@@ -39,10 +42,10 @@ router.post('/register', auth, async (req, res) => {
     }
 })
 
-// /api/auth/clients/
-router.get('/', auth, async (req, res) => {
+// /api/auth/clients/reseption
+router.get('/reseption', auth, async (req, res) => {
     try {
-        const clients = await Clients.find({}).sort({ _id: -1 })
+        const clients = await Clients.find().sort({ _id: -1 })
         res.json(clients);
 
     } catch (e) {
@@ -50,9 +53,9 @@ router.get('/', auth, async (req, res) => {
     }
 })
 
-router.get('/:id', auth, async (req, res) => {
+// /api/auth/clients/reseption
+router.get('/reseption/:id', auth, async (req, res) => {
     try {
-
         const clients = await Clients.findById(req.params.id)
         res.json(clients)
     } catch (e) {
@@ -60,9 +63,52 @@ router.get('/:id', auth, async (req, res) => {
     }
 })
 
+// // /api/auth/clients/reseption
+// router.get('/reseption/clientid/:id', auth, async (req, res) => {
+//     try {
+//         const clients = await Clients.findById(req.params.id)
+//         res.json(clients)
+//     } catch (e) {
+//         res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+//     }
+// })
 
-// cashier get client by client id
-router.get('/id/:id', auth, async (req, res) => {
+// /api/auth/clients/reseption
+router.patch('/reseption/:id', auth, async (req, res) => {
+    try {
+        const id = req.params.id
+        const edit = await Clients.findByIdAndUpdate(id, req.body)
+        res.json(edit);
+
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+
+// END RESPTION
+// ===================================================================================
+// ===================================================================================
+
+
+
+
+// ===================================================================================
+// ===================================================================================
+// CASHIER routes
+
+// /api/auth/clients/cashier
+router.get('/cashier', auth, async (req, res) => {
+    try {
+        const clients = await Clients.find().sort({ _id: -1 })
+        res.json(clients);
+
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+
+// /api/auth/clients/cashier
+router.get('/cashier/:id', auth, async (req, res) => {
     try {
         const clients = await Clients.find({ id: req.params.id })
         res.json(clients)
@@ -70,6 +116,13 @@ router.get('/id/:id', auth, async (req, res) => {
         res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
     }
 })
+
+// END CASHIER
+// ===================================================================================
+// ===================================================================================
+
+
+
 
 router.put('/:id', auth, async (req, res) => {
     try {
@@ -81,6 +134,16 @@ router.put('/:id', auth, async (req, res) => {
         res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
     }
 })
+// Get online sections
+router.get('/id/:id', auth, async (req, res) => {
+    try {
+        const clients = await Clients.find({ id: req.params.id })
+        res.json(clients)
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+
 
 router.patch('/:id', auth, async (req, res) => {
     try {
