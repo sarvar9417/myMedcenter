@@ -5,7 +5,7 @@ import { Director } from './Director/Director'
 import { Doctor } from './Doctor/Doctor'
 import { Reseption } from './Reseption/Reseption'
 import { Sayt } from './Sayt/sayt'
-import { Turn } from './Sayt/Turn'
+import { Turn } from './Turn/Turn'
 
 export const useRoutes = () => {
     return (

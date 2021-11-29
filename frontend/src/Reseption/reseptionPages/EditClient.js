@@ -25,6 +25,7 @@ export const EditClient = () => {
 
     const getClient = useCallback(async () => {
         try {
+            console.log("salom");
             const data = await request(`/api/clients/reseption/${clientId}`, 'GET', null, {
                 Authorization: `Bearer ${auth.token}`
             })
@@ -80,11 +81,12 @@ export const EditClient = () => {
             clearError()
         }
         if (form === '') {
-            getClient()
+            if (form.firstname === "") {
+                getClient()
+            }
         }
-
-    }, [error, clearError, getClient, form])
-
+        }, [error, clearError, getClient, form])
+    
     if (loading) {
         return <Loader />
     }
@@ -117,7 +119,7 @@ export const EditClient = () => {
                                     type="text"
                                     className="form-control inp"
                                     placeholder="" />
-                                <label className="labels">Ism</label>    
+                                <label className="labels">Ism</label>
                             </div>
                         </div>
                         <div className="row mt-3">
@@ -138,32 +140,33 @@ export const EditClient = () => {
                                     <div className="btn-group" data-toggle="buttons">
                                         <div className="wrapper">
                                             <input
-                                            className="input"
-                                            id="erkak"
-                                            onChange={changeHandlar}
-                                            name="gender"
-                                            type="radio"
-                                            defaultValue="man"
+                                                className="input"
+                                                id="erkak"
+                                                onChange={changeHandlar}
+                                                name="gender"
+                                                type="radio"
+                                                defaultValue="man"
                                             />
                                             <label
-                                            className={form.gender === "man" ? "label clabel" : "label"}                                            
-                                            for="erkak"
+                                                className={form.gender === "man" ? "label clabel" : "label"}
+                                                for="erkak"
                                             >
-                                            Erkak
+                                                Erkak
                                             </label>
                                             <input
-                                            className="input"
-                                            type="radio"
-                                            id="ayol"
-                                            onChange={changeHandlar}
-                                            name="gender"
-                                            defaultValue="woman"
+                                                className="input"
+                                                type="radio"
+                                                id="ayol"
+                                                onChange={changeHandlar}
+                                                name="gender"
+                                                defaultValue="woman"
                                             />
                                             <label
-                                            className={form.gender === "woman" ? "label clabel" : "label"}
-                                            for="ayol"
+                                                className={form.gender === "woman" ? "label clabel" : "label"}
+                                                for="ayol"
                                             >
-                                            Ayol
+                                                Ayol
+                                                Ayol
                                             </label>
                                         </div>
                                     </div>
@@ -172,7 +175,8 @@ export const EditClient = () => {
                         </div>
                         <div className="row mt-3">
                             <div className="col-md-6 input_box" data-aos="fade-right">
-                                
+
+
                                 <input
                                     defaultValue={form.phone}
                                     name="phone"
@@ -186,7 +190,8 @@ export const EditClient = () => {
                                 </label>
                             </div>
                             <div className="col-md-6 input_box" data-aos="fade-left">
-                                
+
+
                                 <input
                                     onChange={changeDate}
                                     value={new Date(form.born).getFullYear().toString() + '-' + (new Date(form.born).getMonth() < 9 ? "0" + (new Date(form.born).getMonth() + 1).toString() : (new Date(form.born).getMonth() + 1).toString()) + '-' + (new Date(form.born).getDate() < 10 ? "0" + (new Date(form.born).getDate()).toString() : (new Date(form.born).getDate()).toString())}
@@ -196,7 +201,7 @@ export const EditClient = () => {
                                     placeholder=""
                                 />
                                 <label className="labels">
-                                    Tug'ilgan kuni  
+                                    Tug'ilgan kuni
                                 </label>
                             </div>
 

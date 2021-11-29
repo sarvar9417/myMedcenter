@@ -1,3 +1,156 @@
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+import AOS from "aos"
+import "aos/dist/aos.css"
+import { AuthContext } from '../context/AuthContext'
+import './nav.css'
+
+export const Navbar = () => {
+    useEffect(() => {
+        AOS.init()
+    }, [])
+    const history = useHistory()
+    const auth = useContext(AuthContext)
+
+    const logoutHandler = (event) => {
+        event.preventDefault()
+        auth.logout()
+        history.push('/doctor')
+    }
+
+    const [show, setShow] = useState(true)
+    return (
+        <nav className="navbar navbar-expand-lg navbar-light shadow fixed-top bg-light" data-aos="fade-down" data-aos-duration="1000" >
+            <div className="container" >
+                <Link className="navbar-brand" to="/sayt">Logo</Link>
+                <button onClick={() => setShow(!show)} className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
+                    <FontAwesomeIcon icon={faBars} className="navbar-icon" />
+                </button>
+                <div className={show ? "collapse navbar-collapse" : "collapse navbar-collapse show"} id="navbarNav">
+                    <ul className="navbar-nav ms-auto ull">
+                        <li className="nav-item">
+                            <Link className="nav-link a aktive" to="/doctor">Bosh sahifa</Link>
+                        </li>
+                        <li className="nav-item" >
+                            <Link className="nav-link a" to="/doctor/clients">Mijozlar</Link>
+                        </li>
+                        {/* <li className="nav-item">
+                            <Link className="nav-link" to="/reseption/cost">Xarajat</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/reseption/costs">Xarajatlar</Link>
+                        </li> */}
+
+                    </ul>
+                    <li className="nav-item ll" >
+                        <span style={{ backgroundColor: "#EA5353" }} className="nav-link btn text-white" href="" onClick={logoutHandler} >Chiqish</span>
+                    </li>
+                </div>
+            </div>
+        </nav>
+    )
+}
+
+
+//===============
+
+// import { createContext } from 'react';
+
+import { createContext } from "react";
+
+function noop() { }
+
+
+export const AuthContext = createContext({
+    token: null,
+    reseptionId: null,
+    login: noop,
+    logout: noop,
+    isAuthenticated: false
+})
+
+//===============
+
+
+import { useCallback, useEffect, useState } from 'react'
+
+const storageName = 'doctorData'
+export const useAuth = () => {
+    const [token, setToken] = useState(null)
+    const [doctorId, setDoctorId] = useState(null)
+    const [doctor, setDoctor] = useState(null)
+    const login = useCallback((jwtToken, id, doctor) => {
+        setToken(jwtToken)
+        setDoctorId(id)
+        setDoctor(doctor)
+
+        localStorage.setItem(storageName, JSON.stringify({
+            doctorId: id,
+            token: jwtToken,
+            doctor: doctor
+        }))
+    }, [])
+
+    const logout = useCallback(() => {
+        setToken(null)
+        setDoctorId(null)
+        setDoctor(null)
+        localStorage.removeItem(storageName)
+    }, [])
+
+    useEffect(() => {
+        const data = JSON.parse(localStorage.getItem(storageName))
+        if (data && data.token) {
+            login(data.token, data.doctorId, data.doctor)
+        }
+    }, [login])
+
+    return { login, logout, token, doctorId, doctor }
+}
+
+//============
+
+
+//=============
+
+
+
+//==============
+
+
+//===========
+
++/*Islom*/
+
+//=========
+
+
+
+//===========
+
+import React from 'react'
+import { Route, Switch, Redirect } from 'react-router-dom'
+import { Turn } from './TurnPages/Turn'
+
+export const TurnRoutes = () => {
+    return (
+        <div style={{}} >
+            <Switch >
+                <Route path="/turn" exact >
+                    <Turn />
+                </Route>
+                <Redirect to="/" />
+            </Switch>
+        </div>
+    )
+
+}
+
+
+//=============
+
 const { Router } = require('express')
 const router = Router()
 const { Section, validateSection } = require('../models/Section')

@@ -1,24 +1,20 @@
 import React from 'react'
-import { DoctorRoutes } from './DoctorRoutes'
+import { TurnRoutes } from './TurnRoutes'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { useAuth } from './hooks/auth.hook'
 import { AuthContext } from './context/AuthContext'
-import { Navbar } from './components/Navbar'
-export const Doctor = () => {
+export const Turn = () => {
     localStorage.removeItem('reseptionData')
     localStorage.removeItem('cashierData')
-    const { login, token, logout, doctorId, doctor } = useAuth()
+    const { login, token, logout, turnId, turn } = useAuth()
     // const isAuthenticated = true
     const isAuthenticated = !!token
-    const doctorRouter = DoctorRoutes(isAuthenticated)
+    const turnRouter = TurnRoutes(isAuthenticated)
     return (
-        <AuthContext.Provider value={{ login, logout, token, doctorId, isAuthenticated, doctor }} >
+        <AuthContext.Provider value={{ login, logout, token, turnId, isAuthenticated, turn }} >
             <Router>
-                {isAuthenticated && <Navbar />}
-                {doctorRouter}
+                {turnRouter}
             </Router>
         </AuthContext.Provider>
     )
 }
-
-

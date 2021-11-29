@@ -130,7 +130,7 @@ export const Home = () => {
 
 
                 </article>
-                <article className={`linkk blue mt-5 ${clientOnline.length === 0? "d-none": "d-block"}`} style={{ maxWidth: "700px", margin: "auto" }}>
+                <article className={`linkk blue mt-5 ${clientOnline.length === 0 ? "d-none" : "d-block"}`} style={{ maxWidth: "700px", margin: "auto" }}>
                     <div className="row w-100" >
                         <div className="col-12">
                             <h4>
