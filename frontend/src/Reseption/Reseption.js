@@ -7,6 +7,7 @@ import { Navbar } from './components/Navbar'
 export const Reseption = () => {
     localStorage.removeItem('doctorData')
     localStorage.removeItem('cashierData')
+    localStorage.removeItem('directorData')
     const { login, token, logout, reseptionId } = useAuth()
     // const isAuthenticated = true
     const isAuthenticated = !!token

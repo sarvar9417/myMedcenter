@@ -53,7 +53,7 @@ export const Sayt = () => {
                     </article>
                 </Link>
 
-                <Link data-aos="fade-down">
+                <Link to="/director" data-aos="fade-down">
                     <article className="link red">
                         <div className="info">
                             <h2>DIREKTOR</h2>

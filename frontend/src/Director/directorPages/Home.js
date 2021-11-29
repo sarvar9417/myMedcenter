@@ -1,89 +1,93 @@
-import React, { useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
-import DatePicker from "react-datepicker";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClock } from '@fortawesome/free-solid-svg-icons'
+import { AuthContext } from '../context/AuthContext'
+import { useHttp } from '../hooks/http.hook'
+
 
 import "react-datepicker/dist/react-datepicker.css";
 
 export const Home = () => {
-    const monthNames = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentabr", "Oktabr", "Noyabr", "Dekabr"
-    ];
-    const [sec, setSec] = useState(new Date().getSeconds())
-    const [min, setMin] = useState(new Date().getMinutes())
-    const [hour, setHour] = useState(new Date().getHours())
-    const [day, setDay] = useState(new Date().getDate())
-    const [month, setMonth] = useState(new Date().getMonth())
-    const [year, setYear] = useState(new Date().getFullYear())
+    const month = ["yanvar", "fevral", "mart", "aprel", "may", "iyun", "iyul", "avgust", "sentabr", "oktabr", "noyabr", "dekabr"]
+    const auth = useContext(AuthContext)
 
-    setInterval(() => {
-        setSec(new Date().getSeconds())
-        setMin(new Date().getMinutes())
-        setHour(new Date().getHours())
-        setDay(new Date().getDate())
-        setMonth(new Date().getMonth())
-        setYear(new Date().getFullYear())
-    }, 1000);
+    const { request } = useHttp()
+
+    const director = useState(auth.director)
+    console.log(auth.director);
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-md-6">
-                    <Link to="/director/qabul" >
-                        <div className="weather-card one">
-                            <div className="top">
-                                <div className="wrapper">
-                                    <h3 className="heading">{hour < 10 ? '0' + hour : hour}:{min < 10 ? '0' + min : min}:{sec < 10 ? '0' + sec : sec}</h3>
-                                    <p className="temp">
-                                        <span className="temp-value" style={{ fontSize: "100px" }} >
-                                            {day < 10 ? '0' + day : day}
-                                        </span>
-                                        <span className="location d-block">
-                                            {monthNames[month]}
-                                        </span>
-                                        <span className="temp-value">{year}</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="bottom">
-                                <div className="wrapper">
-                                    <ul className="forecast">
-                                        <li className="active">
-                                            <span className="date">MIJOZLARNI QABUL QILISH</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+        <>
+            <div className="container mb-5">
+                <article className="linkk mt-5" >
+                    <h1>Alo/24 Director</h1>
+                    <div className="row mt-2" style={{ borderBottom: "1px solid #999", borderTop: "1px solid #999", padding: "2rem 0" }}>
+                        <div className="col-md-4 text-center">
+                            <img style={{ width: "70%", borderRadius: "50%" }} src="https://www.medclean.com/wp-content/uploads/2018/03/doctor-in-white-coat-blog.jpg" />
                         </div>
-                    </Link>
-                </div>
+                        <div className="col-md-6">
+                            <h2>{auth.director.lastname} {auth.director.firstname} {auth.director.fathername} </h2>
+                            <p style={{ fontSize: "20px" }}> {new Date(auth.director.born).getDate()} {month[new Date(auth.director.born).getMonth()]} {new Date(auth.director.born).getFullYear()}</p>
+                            <p style={{ fontSize: "20px" }}> {auth.director.section}</p>
+                            <p style={{ fontSize: "20px" }}>+{auth.director.phone}</p>
+                            <p style={{ fontSize: "20px" }}>nosirovislom07@gmail.com</p>
+                            <p style={{ textAlign: "right" }}>
+                                <button className="btn text-white" style={{ backgroundColor: "rgb(83, 158, 241)", width: "20%", marginLeft: "5%" }}>Edit</button>
+                            </p>
 
-                <div className="col-md-6">
-                    <div className="weather-card one">
-                        <div className="top">
-                            <div className="wrapper">
-                                <h1 className="heading"><DatePicker
-                                    controls={['date']}
-                                    touchUi={true}
-                                /> </h1>
-                                <h3 className="location">Dhaka, Bangladesh</h3>
-                                <p className="temp">
-                                    <span className="temp-value">20</span>
-                                    <span className="deg">0</span>
-                                </p>
-                            </div>
                         </div>
-                        <div className="bottom">
-                            <div className="wrapper">
-                                <ul className="forecast">
-                                    <li className="active">
-                                        <span className="date">TAHRIRLASH</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+
                     </div>
-                </div>
+                    <div className="links mt-5">
+                        <Link to="/reseption" data-aos="fade-right">
+                            <article className="link redd">
+                                <div className="info">
+                                    <h2>QABUL</h2>
+                                    <p></p>
+                                </div>
+                                <div className="row">
+                                    <div className="col-6" style={{ marginTop: "31px" }}>
+                                        <button className="btn w-100 text-white" style={{ backgroundColor: "hsl(0, 78%, 62%)" }}>Kirish</button>
+                                    </div>
+                                </div>
+                            </article>
+                        </Link>
+
+                        <Link data-aos="fade-up" to="/cashier">
+                            <article className="link orangee">
+                                <div className="info">
+                                    <h2>KASSA</h2>
+                                    <p></p>
+                                </div>
+                                <div className="row">
+                                    <div className="col-6" style={{ marginTop: "31px" }}>
+                                        <button className="btn w-100 text-white" style={{ backgroundColor: "#FCAE49", }}>Kirish</button>
+                                    </div>
+
+                                </div>
+
+                            </article>
+                        </Link>
+                        <Link to="/doctor" data-aos="fade-left">
+                            <article className="link blue">
+                                <div className="info">
+                                    <h2>DOCTOR</h2>
+                                    <p></p>
+                                </div>
+                                <div className="row">
+                                    <div className="col-6" style={{ marginTop: "31px" }}>
+                                        <button className="btn w-100 text-white" style={{ backgroundColor: "#539EF1", }}>Kirish</button>
+                                    </div>
+                                </div>
+                            </article>
+                        </Link>
+
+                    </div>
+
+                </article>
             </div>
-        </div>
+        </>
 
     )
 }
