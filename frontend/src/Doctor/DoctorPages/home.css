@@ -39,3 +39,6 @@
 .orangee::after {
     background-color: hsl(34, 97%, 64%);
 }
+.redd::after {
+    background-color: hsl(0, 78%, 62%);
+}
