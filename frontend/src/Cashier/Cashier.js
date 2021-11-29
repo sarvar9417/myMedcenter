@@ -8,7 +8,6 @@ export const Cashier = () => {
     localStorage.removeItem('doctorData')
     localStorage.removeItem('reseptionData')
     const { login, token, logout, cashierId } = useAuth()
-    console.log(token);
     // const isAuthenticated = true
     const isAuthenticated = !!token
     const cashierRouter = CashierRoutes(isAuthenticated)

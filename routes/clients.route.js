@@ -110,7 +110,17 @@ router.get('/cashier', auth, async (req, res) => {
 // /api/auth/clients/cashier
 router.get('/cashier/:id', auth, async (req, res) => {
     try {
-        const clients = await Clients.find({ id: req.params.id })
+        const clients = await Clients.findById( req.params.id )
+        res.json(clients)
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+
+// /api/auth/clients/cashier
+router.get('/cashierid/:id', auth, async (req, res) => {
+    try {
+        const clients = await Clients.find({id: req.params.id})
         res.json(clients)
     } catch (e) {
         res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
@@ -122,6 +132,35 @@ router.get('/cashier/:id', auth, async (req, res) => {
 // ===================================================================================
 
 
+
+// ===================================================================================
+// ===================================================================================
+// DOCTOR routes
+
+// /api/auth/clients/doctor
+router.get('/doctor/:id', auth, async (req, res) => {
+    try {
+        const clients = await Clients.findById(req.params.id)
+        res.json(clients)
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+
+router.patch('/doctor/:id', auth, async (req, res) => {
+    try {
+        const id = req.params.id
+        const edit = await Clients.findByIdAndUpdate(id, req.body)
+        res.json(edit)
+
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+
+// END DOCTOR
+// ===================================================================================
+// ===================================================================================
 
 
 router.put('/:id', auth, async (req, res) => {

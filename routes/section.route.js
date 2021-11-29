@@ -9,7 +9,6 @@ const auth = require('../middleware/auth.middleware')
 // /api/section/reseption/register
 router.post('/reseption/register/:id', auth, async (req, res) => {
     try {
-        console.log(req.body);
         const id = req.params.id
         const { error } = validateSection(req.body)
         if (error) {
@@ -58,7 +57,6 @@ router.post('/reseption/register/:id', auth, async (req, res) => {
         res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
     }
 })
-
 
 // /api/section/reseption
 router.get('/reseption', auth, async (req, res) => {
@@ -150,10 +148,18 @@ router.patch('/cashier/:id', auth, async (req, res) => {
 })
 
 
+// END CASHIER routes
+// ===================================================================================
+// ===================================================================================
 
+
+
+// ===================================================================================
+// ===================================================================================
+// CASHIER routes
 
 // Get online sections
-router.get('/on/:section', auth, async (req, res) => {
+router.get('/doctoronline/:section', auth, async (req, res) => {
     try {
         const section = await Section.find({
             bronDay: { $gte: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()) },
@@ -168,7 +174,7 @@ router.get('/on/:section', auth, async (req, res) => {
 })
 
 // Get offline sections
-router.get('/off/:section', auth, async (req, res) => {
+router.get('/doctoroffline/:section', auth, async (req, res) => {
     try {
         const section = await Section.find({
             bronDay: { $gte: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()) },
@@ -182,8 +188,50 @@ router.get('/off/:section', auth, async (req, res) => {
     }
 })
 
-// END DOCTOR SECTION
+// /api/section/doctor
+router.get('/doctor/:id', auth, async (req, res) => {
+    try {
+        const id = req.params.id
+        const sections = await Section.findById(id)
+        res.json(sections);
 
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+
+router.put('/doctordontcome/:id', auth, async (req, res) => {
+    try {
+        const id = req.params.id
+        const edit = await Section.findById(id)
+        edit.checkup = req.body.checkUp
+        await edit.save()
+        res.json(edit)
+
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+
+router.put('/doctordone/:id', auth, async (req, res) => {
+    try {
+        const id = req.params.id
+        const edit = await Section.findById(id)
+        edit.checkup = req.body.checkUp
+        edit.comment = req.body.comment
+        edit.summary = req.body.summary
+        edit.done = req.body.done
+        await edit.save()
+        res.json(edit)
+
+    } catch (e) {
+        res.status(500).json({ message: 'Serverda xatolik yuz berdi' })
+    }
+})
+
+// END DOCTOR SECTION
+// ===================================================================================
+// ===================================================================================
 
 
 // /api/section/
@@ -217,7 +265,6 @@ router.put('/:id', auth, async (req, res) => {
 
 router.patch('/:id', auth, async (req, res) => {
     try {
-        console.log(req.body)
         const id = req.params.id
         const edit = await Section.findByIdAndUpdate(id, req.body)
         res.json(edit)
