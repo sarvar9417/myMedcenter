@@ -27,10 +27,10 @@ export const Home = () => {
                             <img style={{ width: "70%", borderRadius: "50%" }} src="https://www.medclean.com/wp-content/uploads/2018/03/doctor-in-white-coat-blog.jpg" />
                         </div>
                         <div className="col-md-6">
-                            <h2>{auth.director && auth.director.lastname} {auth.director && auth.director.firstname} {auth.director &&  auth.director.fathername} </h2>
-                            <p style={{ fontSize: "20px" }}> {auth.director && new Date(auth.director.born).getDate()} {auth.director && month[new Date(auth.director.born).getMonth()]} {auth.director &&  new Date(auth.director.born).getFullYear()}</p>
-                            <p style={{ fontSize: "20px" }}> {auth.director &&  auth.director.section}</p>
-                            <p style={{ fontSize: "20px" }}>+{auth.director &&  auth.director.phone}</p>
+                            <h2>{auth.director && auth.director.lastname} {auth.director && auth.director.firstname} {auth.director && auth.director.fathername} </h2>
+                            <p style={{ fontSize: "20px" }}> {auth.director && new Date(auth.director.born).getDate()} {auth.director && month[new Date(auth.director.born).getMonth()]} {auth.director && new Date(auth.director.born).getFullYear()}</p>
+                            <p style={{ fontSize: "20px" }}> {auth.director && auth.director.section}</p>
+                            <p style={{ fontSize: "20px" }}>+{auth.director && auth.director.phone}</p>
                             <p style={{ fontSize: "20px" }}>nosirovislom07@gmail.com</p>
                             <p style={{ textAlign: "right" }}>
                                 <button className="btn text-white" style={{ backgroundColor: "rgb(83, 158, 241)", width: "20%", marginLeft: "5%" }}>Edit</button>
@@ -69,7 +69,7 @@ export const Home = () => {
 
                             </article>
                         </Link>
-                        <Link to="/doctor" data-aos="fade-left">
+                        <Link to="/director/adddoctor" data-aos="fade-left">
                             <article className="link blue">
                                 <div className="info">
                                     <h2>DOCTOR</h2>

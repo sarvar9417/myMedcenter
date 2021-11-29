@@ -4,6 +4,7 @@ import { ClientsPages } from './directorPages/ClientsPages'
 import { AuthPage } from './directorPages/DirectorAuth'
 import { Sayt } from '../Sayt/sayt'
 import { Home } from '../Director/directorPages/Home'
+import { AddDoctor } from './directorPages/AddDoctor'
 
 export const DirectorRoutes = (isAuthenticated) => {
     if (isAuthenticated) {
@@ -12,6 +13,9 @@ export const DirectorRoutes = (isAuthenticated) => {
                 <Switch>
                     <Route path="/director" exact >
                         <Home />
+                    </Route>
+                    <Route path="/director/adddoctor" exact >
+                        <AddDoctor/>
                     </Route>
                     <Route path="/sayt" >
                         <Sayt />
