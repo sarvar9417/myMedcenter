@@ -40,10 +40,10 @@ export const Home = () => {
 
                     </div>
                     <div className="links mt-5">
-                        <Link to="/reseption" data-aos="fade-right">
+                        <Link to="/director/clients" data-aos="fade-right">
                             <article className="link redd">
                                 <div className="info">
-                                    <h2>QABUL</h2>
+                                    <h2>Mijozlar</h2>
                                     <p></p>
                                 </div>
                                 <div className="row">

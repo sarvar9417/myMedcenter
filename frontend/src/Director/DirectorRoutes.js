@@ -9,13 +9,16 @@ import { AddDoctor } from './directorPages/AddDoctor'
 export const DirectorRoutes = (isAuthenticated) => {
     if (isAuthenticated) {
         return (
-            <div style={{ marginTop: "57px" }}>
+            <div style={{ marginTop: "70px" }}>
                 <Switch>
                     <Route path="/director" exact >
                         <Home />
                     </Route>
-                    <Route path="/director/adddoctor" exact >
+                    <Route path="/director/adddoctor"  >
                         <AddDoctor/>
+                    </Route>
+                    <Route path="/director/clients"  >
+                        <ClientsPages />
                     </Route>
                     <Route path="/sayt" >
                         <Sayt />

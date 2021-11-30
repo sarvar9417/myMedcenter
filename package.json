@@ -4,9 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": " cross-env NODE_ENV=production node app.js",
     "server": "nodemon app.js",
-    "frontend": "npm run start --prefix ./frontend",
+    "frontend": "npm run start --prefix frontend",
+    "frontend:install": "npm install --prefix frontend",
+    "frontend:build": "npm run build --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run frontend\""
   },
   "author": "Sarvar Murodullayev <sarvar9417@gmail.com>",
@@ -21,6 +23,7 @@
   },
   "devDependencies": {
     "concurrently": "^6.3.0",
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.14"
   }
 }

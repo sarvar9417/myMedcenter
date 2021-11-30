@@ -6,6 +6,9 @@ const app = express()
 
 const PORT = config.get("PORT")
 
+const path = require('path')
+const { patch } = require('./routes/reseptionAuth.route')
+
 app.use(express.json({ extended: true }))
 app.use(express.urlencoded({ extended: true }))
 // Reseption
@@ -23,6 +26,13 @@ app.use('/api/cost', require('./routes/cost.route'))
 // Doctor
 app.use('/api/auth/doctor', require('./routes/doctorAuth.route'))
 
+if (process.env.NODE_ENV === "production" ) {
+    app.use('/', express.static(path.join(__dirname, 'frontend', 'build')))
+
+    app.get('*', (req, res)=>{
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+    })
+}
 async function start() {
     try {
         await mongoose.connect(config.get("mongoUri"), {
