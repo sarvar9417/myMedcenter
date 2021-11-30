@@ -177,7 +177,7 @@ export const NewClient = () => {
         <div className="col-12 mt-3 d-flex justify-content-center align-items-center">
           <h4 className="text-right">Mijozning ma'lumotlarini kiritish</h4>
         </div>
-      </div>
+      </div> 
       <div className="row">
         <div className="col-md-6 input_box" data-aos="fade-right">
           <input

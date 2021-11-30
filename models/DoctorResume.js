@@ -8,7 +8,7 @@ const doctorResume = new Schema({
     gender: { type: String, required: true },
     phone: { type: Number },
     born: { type: Date },
-    section: { type: String }
+    section: { type: String } 
 })
 
 function validateDoctorResume(doctorResume) {
