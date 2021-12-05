@@ -7,6 +7,7 @@ import { useHttp } from '../hooks/http.hook'
 
 
 import "react-datepicker/dist/react-datepicker.css";
+import { Chart } from './Chart'
 
 export const Home = () => {
     const month = ["yanvar", "fevral", "mart", "aprel", "may", "iyun", "iyul", "avgust", "sentabr", "oktabr", "noyabr", "dekabr"]
@@ -54,7 +55,7 @@ export const Home = () => {
                             </article>
                         </Link>
 
-                        <Link data-aos="fade-up" to="/cashier">
+                        <Link to="/director/chart" data-aos="fade-up">
                             <article className="link orangee">
                                 <div className="info">
                                     <h2>KASSA</h2>

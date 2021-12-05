@@ -15,11 +15,14 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "chart.js": "^3.6.1",
     "config": "^3.3.6",
     "express": "^4.17.1",
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.12"
+    "mongoose": "^6.0.12",
+    "react-chartjs-2": "^4.0.0",
+    "recharts": "^2.1.6"
   },
   "devDependencies": {
     "concurrently": "^6.3.0",

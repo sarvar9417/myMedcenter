@@ -5,6 +5,7 @@ import { AuthPage } from './directorPages/DirectorAuth'
 import { Sayt } from '../Sayt/sayt'
 import { Home } from '../Director/directorPages/Home'
 import { AddDoctor } from './directorPages/AddDoctor'
+import { Chart } from './directorPages/Chart'
 
 export const DirectorRoutes = (isAuthenticated) => {
     if (isAuthenticated) {
@@ -19,6 +20,9 @@ export const DirectorRoutes = (isAuthenticated) => {
                     </Route>
                     <Route path="/director/clients"  >
                         <ClientsPages />
+                    </Route>
+                    <Route path="/director/chart"  >
+                        <Chart />
                     </Route>
                     <Route path="/sayt" >
                         <Sayt />
